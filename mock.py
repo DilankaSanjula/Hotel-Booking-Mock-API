@@ -38,20 +38,18 @@ class HotelDatabase:
                 }
             )
 
-    def make_reservation(self ,name, email, phone, room, check_in , check_out):
+    def make_reservation(self ,email, phone, room, check_in):
 
         reservation_id = random.randint(1000, 9999)
 
         Item = { 
                 'reservation_id': str(reservation_id),
-                'name': name,
                 'phone': phone,
                 'email': email,
                 'room_type': room,
                 'check_in': check_in,
-                'check_out': check_out
                 }
-        response = self.reservation_table.put_item(Item)
+        response = self.reservation_table.put_item(Item=Item)
         if response['ResponseMetadata']['HTTPStatusCode'] ==200:
             self.update_room_count(room, update_type="remove")
             return {'status': "Successful", 'payload': Item , 'cause':"Reservation made successfully"}
