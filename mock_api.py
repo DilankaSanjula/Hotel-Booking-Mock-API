@@ -11,6 +11,7 @@ app = FastAPI()
 db_functions = HotelDatabase()
 
 class Reservation(BaseModel):
+    reservation_id: str
     user_email: str
     user_phone: str
     room_type: str
@@ -38,8 +39,9 @@ async def make_reservation(reservation_params: Reservation):
     phone = reservation_params.user_phone
     room = reservation_params.room_type
     check_in = reservation_params.check_in_date
+    reservation_id = reservation_params.reservation_id
 
-    reservation_response = db_functions.make_reservation(email, phone, room, check_in)
+    reservation_response = db_functions.make_reservation(reservation_id,email, phone, room, check_in)
     return reservation_response
 
 

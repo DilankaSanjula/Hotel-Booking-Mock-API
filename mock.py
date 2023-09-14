@@ -38,9 +38,7 @@ class HotelDatabase:
                 }
             )
 
-    def make_reservation(self ,email, phone, room, check_in):
-
-        reservation_id = random.randint(1000, 9999)
+    def make_reservation(self ,reservation_id,email, phone, room, check_in):
 
         Item = { 
                 'reservation_id': str(reservation_id),
