@@ -5,7 +5,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from mock import HotelDatabase
 
-# from datetime import datetime, time, timedelta
 
 app = FastAPI()
 db_functions = HotelDatabase()
@@ -26,6 +25,7 @@ class CancelReservation(BaseModel):
 @app.get("/")
 async def root() -> int:
     return 200
+
 
 @app.post("/availability")
 async def check_availability(room_info: RoomType):
